@@ -1,8 +1,8 @@
 {
+  "urlRandomness": "tf-5kr",
   "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "v3-gr9",
   "https": false
 }

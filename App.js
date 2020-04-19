@@ -1,97 +1,89 @@
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { StyleSheet, Text, View, Dimensions, TextInput,Image,Button } from 'react-native';
+import { StyleSheet, Text, View,Image,FlatList} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+ 
 
-//Get Dimensions
-const { height, width } = Dimensions.get('window');
 
-
-export default function App() {
-  return (
-    <LinearGradient style={styles.container} colors={['#DA4453', '#89216B']}>
-        <Image source={require('./admin.jpg')} style={styles.img} />
-        <View style={styles.card}>
-          <TextInput style={styles.input} placeholder="Name" />
-          <TextInput style={styles.input} placeholder="Phone Number" />
-          <TextInput style={styles.input} placeholder="Address" />
-          <TextInput style={styles.inputLong} placeholder="About me" /> 
-        </View>
-        <View style={styles.btn}>
-          <Button title="Save" color="#d54255"/>
-        </View>
-    </LinearGradient>
-  );
+class MyItems extends React.Component{
+    render(){
+        const items = this.props.myData
+        return(
+            <View style={styles.container}>
+                <Image source= {{uri: items.uri}} style={styles.tinyLogo} />
+                <Text style={styles.name_txt}>{items.name}</Text>
+                <Icon name="delete" color="pink" size={30} />
+            </View>
+        );
+    }
 }
+export default function App() {
+    const myData = [
+        {
+           id:1,
+           name:"Awa",
+           uri: 'https://i.pravatar.cc/150?u=838433638'
+        },
+        {
+           id:2,
+           name:"Maxim",
+           uri: 'https://i.pravatar.cc/150?u=838434638'
+        },
+        {
+           id:3,
+           name:"Fatou",
+           uri: 'https://i.pravatar.cc/150?u=838434636'
+        },
+        {
+           id:4,
+           name:"Albert",
+           uri: 'https://i.pravatar.cc/150?u=838434634'
+        },
+        {
+           id:5,
+           name:"Alphonse",
+           uri: 'https://i.pravatar.cc/150?u=838434633'
+        }
+     ]
+    return (
+       
+
+        <FlatList
+            data={myData}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({item}) => <MyItems myData={item}/>}
+        />
+
+    );
+  }
+
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 50,
+   container: {
+    paddingTop: 20,
+    paddingLeft:10,
+    marginTop:10,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
+    paddingBottom:5,
+    borderBottomWidth:1,
+    borderBottomColor:'grey'
   },
-  title: {
-    color: '#fff'
+  tinyLogo:{
+    height:80,
+    width:80,
+    borderRadius: 100 / 2
   },
-  img: {
-    width: 150, 
-    height: 150, 
-    borderRadius: 400/ 2
-  },
-  card: {
-  backgroundColor: '#fff',
-  flex: 4,
-  width: width - 25,
-  borderTopLeftRadius: 10,
-  borderTopRightRadius: 10,
-  ...Platform.select({
-    ios: {
-      shadowColor: 'rgb(50,50,50)',
-      shadowOpacity: 0.5,
-      shadowRadius: 5,
-      shadowOffset: {
-        height: -1,
-        width: 0
-      }
-    },
-    android: {
-      elevation: 15
-    }
-  })
-},
-  btn: {
-    marginTop: 40,
-    marginBottom: 30,
+  name_txt: {
+    fontWeight: 'bold',
+    fontSize: 20,
     flex: 1,
-    width: 150,
-    borderRadius: 400/ 2
+    flexWrap: 'wrap',
+    marginLeft:40,
+    color:'grey'
   },
-  appTitle: {
-    color: '#fff',
-    fontSize: 36,
-    marginTop: 60,
-    marginBottom: 30,
-    fontWeight: '300'
-  },
-input: {
-  padding: 20,
-  borderBottomColor: '#bbb',
-  borderBottomWidth: 1,
-  fontSize: 24
-},
-inputLong: {
-    padding: 20,
-    borderBottomColor: '#bbb',
-    borderBottomWidth: 1,
-    fontSize: 24,
-    height: 75
-  },
-
-input: {
-  padding: 20,
-  borderBottomColor: '#bbb',
-  borderBottomWidth: 1,
-  fontSize: 24
-}
-});
+  
+})

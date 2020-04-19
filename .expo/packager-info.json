@@ -2,8 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 26704,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": 24708,
+  "expoServerNgrokUrl": "https://tf-5kr.anonymous.entrevoisins.exp.direct",
+  "packagerNgrokUrl": "https://packager.tf-5kr.anonymous.entrevoisins.exp.direct",
+  "ngrokPid": 21408,
+  "webpackServerPort": 19006
 }
